@@ -1894,25 +1894,24 @@ if (window.matchMedia('(max-width:768px)').matches) {
       const pdf  = await window.pdfjsLib.getDocument(dataUrl).promise;
       const page = await pdf.getPage(1);
 
-      // Render full page at high resolution
-      const SCALE = 3.5;
-      const fullVp = page.getViewport({ scale: SCALE });
-      const offscreen = document.createElement('canvas');
-      offscreen.width  = fullVp.width;
-      offscreen.height = fullVp.height;
-      const offCtx = offscreen.getContext('2d');
-      offCtx.fillStyle = '#ffffff';
-      offCtx.fillRect(0, 0, offscreen.width, offscreen.height);
-      await page.render({ canvasContext: offCtx, viewport: fullVp }).promise;
+      // Get natural page dimensions first (scale=1)
+      const naturalVp = page.getViewport({ scale: 1 });
 
-      // Crop top 42% of the page (logo + name + title area)
-      const cropH = Math.floor(offscreen.height * 0.42);
-      canvasEl.width  = offscreen.width;
-      canvasEl.height = cropH;
+      // Target display size: card width ~300px, auto height to keep aspect ratio
+      const TARGET_W = 560; // px — render at 2x for sharpness
+      const scale    = TARGET_W / naturalVp.width;
+      const vp       = page.getViewport({ scale });
+
+      canvasEl.width  = vp.width;
+      canvasEl.height = vp.height;
+
       const ctx = canvasEl.getContext('2d');
+      // White background
       ctx.fillStyle = '#ffffff';
       ctx.fillRect(0, 0, canvasEl.width, canvasEl.height);
-      ctx.drawImage(offscreen, 0, 0, offscreen.width, cropH, 0, 0, offscreen.width, cropH);
+
+      // Render full page — no cropping
+      await page.render({ canvasContext: ctx, viewport: vp }).promise;
       return true;
     } catch(e) {
       console.warn('[Certs] PDF render error:', e.message);
@@ -1938,7 +1937,7 @@ if (window.matchMedia('(max-width:768px)').matches) {
             + '<span style="font-family:\'JetBrains Mono\',monospace;font-size:0.6rem;color:#00F0FF;letter-spacing:0.1em;">PDF</span>'
             + '</div>';
         } else {
-          cv.style.cssText = 'width:100%;height:100%;object-fit:cover;object-position:top;display:block;';
+          cv.style.cssText = 'width:100%;height:auto;display:block;';
         }
       }, 80);
       return '<div style="height:160px;overflow:hidden;background:#080E1C;display:flex;align-items:center;justify-content:center;">'
