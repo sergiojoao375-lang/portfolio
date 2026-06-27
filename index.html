@@ -633,6 +633,12 @@ footer a{color:var(--cyan);text-decoration:none;}
    RESPONSIVE
 ════════════════════════════════ */
 @media(max-width:1024px){
+  #certs-grid{ grid-template-columns: repeat(2,1fr) !important; }
+}
+@media(max-width:600px){
+  #certs-grid{ grid-template-columns: 1fr !important; }
+}
+@media(max-width:1024px){
   section{padding:5rem 2rem;}
   #about .about-grid{grid-template-columns:1fr;gap:3rem;}
   #skills .skills-wrapper{grid-template-columns:1fr;}
@@ -660,6 +666,7 @@ footer a{color:var(--cyan);text-decoration:none;}
   .btn-primary,.btn-secondary{text-align:center;justify-content:center;}
 }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 </head>
 <body>
 
@@ -1150,13 +1157,24 @@ footer a{color:var(--cyan);text-decoration:none;}
     <p style="color:var(--text2);font-size:0.9rem;margin-bottom:2.5rem;font-family:'JetBrains Mono',monospace;" data-i18n="certs.subtitle">
       &gt; Verified credentials, diplomas and badges
     </p>
-    <div id="certs-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;">
+    <div id="certs-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;">
       <!-- Cards rendered by JS from storage -->
       <div id="certs-empty" style="grid-column:1/-1;text-align:center;padding:4rem 2rem;color:var(--text3);font-family:'JetBrains Mono',monospace;font-size:0.82rem;display:none;">
         <div style="font-size:3rem;margin-bottom:1rem;opacity:0.3;">📜</div>
         <span data-i18n="certs.empty">No certifications added yet.</span>
       </div>
     </div>
+
+    <!-- Ver todos button -->
+    <div id="certs-show-more-wrap" style="text-align:center;margin-top:2rem;display:none;">
+      <button id="certs-show-more" style="
+        font-family:'JetBrains Mono',monospace;font-size:0.78rem;letter-spacing:0.1em;
+        text-transform:uppercase;padding:0.7rem 2rem;border-radius:6px;
+        border:1px solid var(--border);background:transparent;
+        color:var(--cyan);cursor:pointer;transition:all 0.3s;
+      " data-i18n="certs.viewall">Ver todos →</button>
+    </div>
+
     <!-- Admin unlock -->
     <div style="margin-top:3rem;text-align:right;">
       <button id="cert-admin-toggle" style="
@@ -1335,7 +1353,7 @@ const i18n = {
     "contact.send":"send --confirm",
     "contact.desc":"Open to electrical engineering consultancy, fullstack development projects and technical collaborations. Based in Luanda, Angola — available remotely or on-site.",
     "contact.ok":"> Message delivered! ✓","contact.err":"> Please fill all fields.",
-    "footer.copy":"© 2025 Sérgio José Sebastião João. Built with code & ☕","footer.top":"Back to top ↑","certs.tag":"Credentials","certs.title":"Certifications &<br/>Diplomas","certs.subtitle":"> Verified credentials, diplomas and badges","certs.empty":"No certifications added yet.","certs.adminbtn":"⚙ Admin","certs.adminTitle":"Admin Panel — Certifications","certs.adminSub":"Only you can add or remove certifications","certs.passPrompt":"Enter your admin password to continue:","certs.unlock":"Unlock →","certs.addNew":"+ Add New Certification","certs.f.title":"Title *","certs.f.issuer":"Issuer *","certs.f.date":"Date","certs.f.type":"Type","certs.f.desc":"Description (optional)","certs.f.url":"Credential URL (optional)","certs.f.img":"Upload Image / PDF preview (optional)","certs.save":"Save Certification","certs.manage":"Manage Existing","certs.logout":"Lock Admin ✕",
+    "footer.copy":"© 2025 Sérgio José Sebastião João. Built with code & ☕","footer.top":"Back to top ↑","certs.tag":"Credentials","certs.title":"Certifications &<br/>Diplomas","certs.subtitle":"> Verified credentials, diplomas and badges","certs.empty":"No certifications added yet.","certs.adminbtn":"⚙ Admin","certs.adminTitle":"Admin Panel — Certifications","certs.adminSub":"Only you can add or remove certifications","certs.passPrompt":"Enter your admin password to continue:","certs.unlock":"Unlock →","certs.addNew":"+ Add New Certification","certs.f.title":"Title *","certs.f.issuer":"Issuer *","certs.f.date":"Date","certs.f.type":"Type","certs.f.desc":"Description (optional)","certs.f.url":"Credential URL (optional)","certs.f.img":"Upload Image / PDF preview (optional)","certs.save":"Save Certification","certs.manage":"Manage Existing","certs.logout":"Lock Admin ✕","certs.viewall":"View all →","certs.showless":"Show less ↑",
     "boot.l1":"> Initializing portfolio.exe...","boot.l2":"> Loading modules: ██████████ 100%","boot.l3":"> Welcome. Let's build something great.",
     "send.e":"Encrypting message...","send.s":"Sending to server...","send.d":"Message delivered! ✓"
   },
@@ -1371,7 +1389,7 @@ const i18n = {
     "contact.send":"enviar --confirmar",
     "contact.desc":"Disponível para consultoria em engenharia eléctrica, projectos de desenvolvimento fullstack e colaborações técnicas. Baseado em Luanda, Angola — disponível remotamente ou presencialmente.",
     "contact.ok":"> Mensagem entregue! ✓","contact.err":"> Por favor preencha todos os campos.",
-    "footer.copy":"© 2025 Sérgio José Sebastião João. Feito com código & ☕","footer.top":"Voltar ao topo ↑","certs.tag":"Credenciais","certs.title":"Certificações &<br/>Diplomas","certs.subtitle":"> Credenciais verificadas, diplomas e badges","certs.empty":"Nenhuma certificação adicionada ainda.","certs.adminbtn":"⚙ Admin","certs.adminTitle":"Painel Admin — Certificações","certs.adminSub":"Apenas você pode adicionar ou remover certificações","certs.passPrompt":"Introduza a sua senha de administrador:","certs.unlock":"Entrar →","certs.addNew":"+ Adicionar Nova Certificação","certs.f.title":"Título *","certs.f.issuer":"Emissor *","certs.f.date":"Data","certs.f.type":"Tipo","certs.f.desc":"Descrição (opcional)","certs.f.url":"URL da Credencial (opcional)","certs.f.img":"Upload Imagem / PDF (opcional)","certs.save":"Guardar Certificação","certs.manage":"Gerir Existentes","certs.logout":"Bloquear Admin ✕",
+    "footer.copy":"© 2025 Sérgio José Sebastião João. Feito com código & ☕","footer.top":"Voltar ao topo ↑","certs.tag":"Credenciais","certs.title":"Certificações &<br/>Diplomas","certs.subtitle":"> Credenciais verificadas, diplomas e badges","certs.empty":"Nenhuma certificação adicionada ainda.","certs.adminbtn":"⚙ Admin","certs.adminTitle":"Painel Admin — Certificações","certs.adminSub":"Apenas você pode adicionar ou remover certificações","certs.passPrompt":"Introduza a sua senha de administrador:","certs.unlock":"Entrar →","certs.addNew":"+ Adicionar Nova Certificação","certs.f.title":"Título *","certs.f.issuer":"Emissor *","certs.f.date":"Data","certs.f.type":"Tipo","certs.f.desc":"Descrição (opcional)","certs.f.url":"URL da Credencial (opcional)","certs.f.img":"Upload Imagem / PDF (opcional)","certs.save":"Guardar Certificação","certs.manage":"Gerir Existentes","certs.logout":"Bloquear Admin ✕","certs.viewall":"Ver todos →","certs.showless":"Ver menos ↑",
     "boot.l1":"> Inicializando portfolio.exe...","boot.l2":"> Carregando módulos: ██████████ 100%","boot.l3":"> Bem-vindo. Vamos construir algo incrível.",
     "send.e":"Criptografando mensagem...","send.s":"Enviando ao servidor...","send.d":"Mensagem entregue! ✓"
   }
@@ -1762,16 +1780,20 @@ if (window.matchMedia('(max-width:768px)').matches) {
   };
 
   /* ── SUPABASE FETCH ── */
-  const SB = (path, opts={}) => fetch(
-    SUPABASE_URL + '/rest/v1/' + path,
-    { ...opts, headers: {
-        'apikey': SUPABASE_KEY,
-        'Authorization': 'Bearer ' + SUPABASE_KEY,
-        'Content-Type': 'application/json',
-        'Prefer': opts.prefer || 'return=representation',
-        ...(opts.headers||{})
-    }}
-  );
+  function SB(path, opts={}) {
+    const method  = opts.method || 'GET';
+    const headers = {
+      'apikey':        SUPABASE_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_KEY,
+      'Content-Type':  'application/json',
+      'Prefer':        'return=representation',
+    };
+    // For DELETE use return=minimal
+    if (method === 'DELETE') headers['Prefer'] = 'return=minimal';
+    const init = { method, headers };
+    if (opts.body) init.body = opts.body;
+    return fetch(SUPABASE_URL + '/rest/v1/' + path, init);
+  }
 
   /* ── LOCAL STORAGE ── */
   function lsGet() {
@@ -1838,10 +1860,7 @@ if (window.matchMedia('(max-width:768px)').matches) {
     // Always delete from localStorage
     lsDel(id);
     try {
-      const r = await SB(TABLE + '?id=eq.' + id, {
-        method: 'DELETE', prefer: 'return=minimal',
-        headers: { 'Prefer': 'return=minimal' }
-      });
+      const r = await SB(TABLE + '?id=eq.' + id, { method: 'DELETE' });
       if (!r.ok) throw new Error(r.status);
       console.log('[Certs] ✅ Deleted from cloud');
     } catch(e) {
@@ -1858,26 +1877,67 @@ if (window.matchMedia('(max-width:768px)').matches) {
   }
 
   /* ── THUMB HTML ── */
-  function makeThumb(imgSrc, icon, title, url) {
-    if (!imgSrc) {
-      return `<div style="height:160px;background:linear-gradient(135deg,#080E1C,#0D1526);display:flex;align-items:center;justify-content:center;font-size:3rem;opacity:0.5;">${icon}</div>`;
-    }
-    const isPDF = imgSrc.startsWith('data:application/pdf') || imgSrc.startsWith('data:application/octet') || (imgSrc.includes(';base64,') && imgSrc.substring(imgSrc.indexOf(';base64,')+8, imgSrc.indexOf(';base64,')+16) === 'JVBERi0x');
-    if (isPDF) {
-      return `<div style="height:160px;background:linear-gradient(135deg,#080E1C,#0D1526);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;">
-        <span style="font-size:2.5rem;">📄</span>
-        <span style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:#00F0FF;letter-spacing:0.12em;">PDF DOCUMENT</span>
-        ${url ? `<a href="${url}" target="_blank" onclick="event.stopPropagation()" style="font-size:0.62rem;color:#00F0FF;border:1px solid #00F0FF;padding:0.2rem 0.6rem;border-radius:4px;text-decoration:none;margin-top:0.2rem;">Open ↗</a>` : ''}
-      </div>`;
-    }
-    return `<div style="height:160px;overflow:hidden;background:#080E1C;">
-      <img src="${imgSrc}" alt="${title}"
-        style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"
-        onerror="this.parentElement.innerHTML='<div style=\\'height:160px;display:flex;align-items:center;justify-content:center;font-size:3rem;opacity:0.4;\\'>${icon}</div>'"/>
-    </div>`;
+  /* ── DETECT PDF ── */
+  function isPDFData(src) {
+    if (!src) return false;
+    if (src.startsWith('data:application/pdf')) return true;
+    const b64 = src.includes(';base64,') ? src.split(';base64,')[1] : '';
+    return b64.startsWith('JVBERi0x') || b64.startsWith('JVBE');
   }
 
-  /* ── LOCAL FILE NOTICE ── */
+  /* ── RENDER PDF PAGE 1 TO CANVAS ── */
+  async function renderPDFtoCanvas(dataUrl, canvasEl) {
+    try {
+      if (!window.pdfjsLib) throw new Error('PDF.js not loaded');
+      window.pdfjsLib.GlobalWorkerOptions.workerSrc =
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+      const pdf  = await window.pdfjsLib.getDocument(dataUrl).promise;
+      const page = await pdf.getPage(1);
+      const vp   = page.getViewport({ scale: 2 });
+      canvasEl.width  = vp.width;
+      canvasEl.height = vp.height;
+      await page.render({ canvasContext: canvasEl.getContext('2d'), viewport: vp }).promise;
+      return true;
+    } catch(e) {
+      console.warn('[Certs] PDF render error:', e.message);
+      return false;
+    }
+  }
+
+  /* ── MAKE THUMBNAIL ── */
+  function makeThumb(imgSrc, icon, title, uid) {
+    if (!imgSrc) {
+      return '<div style="height:160px;background:linear-gradient(135deg,#080E1C,#0D1526);display:flex;align-items:center;justify-content:center;font-size:3rem;opacity:0.5;">' + icon + '</div>';
+    }
+    if (isPDFData(imgSrc)) {
+      const cid = 'pdfcv-' + uid;
+      setTimeout(async () => {
+        const cv = document.getElementById(cid);
+        if (!cv) return;
+        const wrap = cv.parentElement;
+        const ok = await renderPDFtoCanvas(imgSrc, cv);
+        if (!ok) {
+          wrap.innerHTML = '<div style="height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;background:linear-gradient(135deg,#080E1C,#0D1526);">'
+            + '<span style="font-size:2.5rem;">📄</span>'
+            + '<span style="font-family:\'JetBrains Mono\',monospace;font-size:0.6rem;color:#00F0FF;letter-spacing:0.1em;">PDF</span>'
+            + '</div>';
+        } else {
+          cv.style.cssText = 'width:100%;height:100%;object-fit:cover;object-position:top;display:block;';
+        }
+      }, 80);
+      return '<div style="height:160px;overflow:hidden;background:#080E1C;display:flex;align-items:center;justify-content:center;">'
+        + '<canvas id="' + cid + '" style="width:100%;height:160px;object-fit:cover;"></canvas>'
+        + '</div>';
+    }
+    // Regular image
+    return '<div style="height:160px;overflow:hidden;background:#080E1C;">'
+      + '<img src="' + imgSrc + '" alt="' + title + '" '
+      + 'style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;" '
+      + 'onerror="this.parentElement.innerHTML=\'<div style=\\\' height:160px;display:flex;align-items:center;justify-content:center;font-size:3rem;opacity:0.4;\\\'>' + icon + '</div>\'"/>'
+      + '</div>';
+  }
+
+    /* ── LOCAL FILE NOTICE ── */
   function checkLocalMode() {
     if (location.protocol !== 'file:') return;
     const existing = document.getElementById('local-mode-banner');
@@ -1891,28 +1951,55 @@ if (window.matchMedia('(max-width:768px)').matches) {
   }
 
   /* ── RENDER PUBLIC GRID ── */
+  const PREVIEW_COUNT = 4;
+  let _allCerts = [];
+  let _showAll  = false;
+
   async function renderGrid() {
     const grid  = document.getElementById('certs-grid');
     const empty = document.getElementById('certs-empty');
+    const moreWrap = document.getElementById('certs-show-more-wrap');
+    const moreBtn  = document.getElementById('certs-show-more');
+
     // Remove old cards
     grid.querySelectorAll('.cert-card').forEach(c => c.remove());
-    // Show spinner
+
+    // Spinner
     const spin = document.createElement('div');
     spin.id = 'certs-spinner';
     spin.style.cssText = 'grid-column:1/-1;text-align:center;padding:3rem;font-family:"JetBrains Mono",monospace;font-size:0.78rem;color:#00F0FF;';
     spin.innerHTML = '<div style="width:24px;height:24px;border:2px solid rgba(0,240,255,0.2);border-top-color:#00F0FF;border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 0.75rem;"></div>Loading...';
     grid.appendChild(spin);
 
-    const certs = await loadAll();
+    _allCerts = await loadAll();
     spin.remove();
 
-    if (!certs || certs.length === 0) {
+    if (!_allCerts || _allCerts.length === 0) {
       empty.style.display = 'block';
+      moreWrap.style.display = 'none';
       return;
     }
     empty.style.display = 'none';
 
-    certs.forEach((cert, i) => {
+    // Decide which certs to show
+    const toShow = _showAll ? _allCerts : _allCerts.slice(0, PREVIEW_COUNT);
+
+    // Show/hide the "Ver todos" button
+    if (_allCerts.length > PREVIEW_COUNT) {
+      moreWrap.style.display = 'block';
+      const lang = document.documentElement.lang || 'en';
+      if (_showAll) {
+        moreBtn.setAttribute('data-i18n','certs.showless');
+        moreBtn.textContent = lang === 'pt' ? 'Ver menos ↑' : 'Show less ↑';
+      } else {
+        moreBtn.setAttribute('data-i18n','certs.viewall');
+        moreBtn.textContent = lang === 'pt' ? 'Ver todos → (' + _allCerts.length + ')' : 'View all → (' + _allCerts.length + ')';
+      }
+    } else {
+      moreWrap.style.display = 'none';
+    }
+
+    toShow.forEach((cert, i) => {
       const t    = TYPES[cert.type] || TYPES.certificate;
       const img  = cert.img_data || cert.imgData || null;
       const url  = cert.url || '';
@@ -1921,26 +2008,35 @@ if (window.matchMedia('(max-width:768px)').matches) {
 
       const card = document.createElement('div');
       card.className = 'cert-card';
-      card.style.cssText = 'background:rgba(13,21,38,0.8);border:1px solid rgba(0,240,255,0.12);border-radius:14px;overflow:hidden;opacity:0;transform:translateY(20px);transition:transform 0.4s,box-shadow 0.4s;';
-      card.onmouseenter = () => { card.style.transform='translateY(-8px)'; card.style.boxShadow='0 20px 50px rgba(0,0,0,0.5),0 0 30px '+t.color+'22'; };
+      card.style.cssText = 'background:rgba(13,21,38,0.8);border:1px solid rgba(0,240,255,0.12);border-radius:12px;overflow:hidden;opacity:0;transform:translateY(20px);transition:transform 0.4s,box-shadow 0.4s;';
+      card.onmouseenter = () => { card.style.transform='translateY(-6px)'; card.style.boxShadow='0 16px 40px rgba(0,0,0,0.5),0 0 24px '+t.color+'22'; };
       card.onmouseleave = () => { card.style.transform=''; card.style.boxShadow=''; };
 
-      card.innerHTML = makeThumb(img, t.icon, cert.title, url) + `
-        <div style="padding:1.25rem;">
-          <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.75rem;flex-wrap:wrap;">
-            <span style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.22rem 0.55rem;border-radius:4px;background:${t.bg};color:${t.color};border:1px solid ${t.color}44;">${t.icon} ${t.label}</span>
-            ${date ? `<span style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:#4A5568;margin-left:auto;">${fmtDate(date)}</span>` : ''}
+      card.innerHTML = makeThumb(img, t.icon, cert.title, cert.id || String(Date.now() + i)) + `
+        <div style="padding:1rem;">
+          <div style="display:flex;align-items:center;gap:0.4rem;margin-bottom:0.6rem;flex-wrap:wrap;">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.18rem 0.45rem;border-radius:4px;background:${t.bg};color:${t.color};border:1px solid ${t.color}44;">${t.icon} ${t.label}</span>
+            ${date ? `<span style="font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:#4A5568;margin-left:auto;">${fmtDate(date)}</span>` : ''}
           </div>
-          <div style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;margin-bottom:0.3rem;color:#E8EDF5;">${cert.title}</div>
-          <div style="font-size:0.78rem;color:${t.color};margin-bottom:${desc?'0.6rem':'0'};">${cert.issuer}</div>
-          ${desc ? `<p style="font-size:0.78rem;color:#8892A4;line-height:1.55;margin-bottom:0.75rem;">${desc}</p>` : ''}
-          ${url  ? `<a href="${url}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.4rem;font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:${t.color};text-decoration:none;border-bottom:1px solid ${t.color}55;padding-bottom:1px;">↗ View Credential</a>` : ''}
+          <div style="font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:800;margin-bottom:0.25rem;color:#E8EDF5;line-height:1.3;">${cert.title}</div>
+          <div style="font-size:0.72rem;color:${t.color};margin-bottom:${desc?'0.5rem':'0'};">${cert.issuer}</div>
+          ${desc ? `<p style="font-size:0.72rem;color:#8892A4;line-height:1.5;margin-bottom:0.6rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${desc}</p>` : ''}
+          ${url  ? `<a href="${url}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.3rem;font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:${t.color};text-decoration:none;border-bottom:1px solid ${t.color}55;padding-bottom:1px;">↗ View Credential</a>` : ''}
         </div>`;
 
       grid.appendChild(card);
-      setTimeout(() => { card.style.opacity='1'; card.style.transform='translateY(0)'; }, 60 + i*80);
+      setTimeout(() => { card.style.opacity='1'; card.style.transform='translateY(0)'; }, 50 + i*60);
     });
   }
+
+  /* ── SHOW MORE / LESS ── */
+  document.getElementById('certs-show-more').addEventListener('click', () => {
+    _showAll = !_showAll;
+    renderGrid();
+    if (!_showAll) {
+      document.getElementById('certifications').scrollIntoView({ behavior:'smooth', block:'start' });
+    }
+  });
 
   /* ── RENDER MANAGE LIST ── */
   async function renderList() {
