@@ -384,7 +384,7 @@ section{padding:7rem 3rem;max-width:1280px;margin:0 auto;}
 .panel-title::after{content:'';flex:1;height:1px;background:var(--border);}
 /* Orbits */
 .orbit-system{
-  position:relative;width:280px;height:280px;margin:0 auto;
+  position:relative;width:360px;height:360px;margin:0 auto;
 }
 .orbit-core{
   position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
@@ -402,6 +402,7 @@ section{padding:7rem 3rem;max-width:1280px;margin:0 auto;}
 .orbit-ring:nth-child(1){width:120px;height:120px;}
 .orbit-ring:nth-child(2){width:190px;height:190px;}
 .orbit-ring:nth-child(3){width:260px;height:260px;}
+.orbit-ring:nth-child(4){width:336px;height:336px;}
 .orbit-item{
   position:absolute;top:50%;left:50%;
   font-family:'JetBrains Mono',monospace;font-size:0.65rem;
@@ -582,9 +583,9 @@ section{padding:7rem 3rem;max-width:1280px;margin:0 auto;}
 .t-textarea{
   background:transparent;border:none;outline:none;
   font-family:'JetBrains Mono',monospace;font-size:0.82rem;
-  color:#e8edf5;flex:1;resize:none;min-height:80px;cursor:none;
+  color:#e8edf5;flex:1;resize:none;min-height:160px;cursor:none;
 }
-.t-send-line{margin-top:1rem;display:flex;gap:0.5rem;}
+.t-send-line{margin-top:2.5rem;display:flex;gap:0.5rem;}
 .t-send-btn{
   background:rgba(0,255,136,0.1);border:1px solid rgba(0,255,136,0.3);
   color:#00FF88;font-family:'JetBrains Mono',monospace;font-size:0.8rem;
@@ -667,6 +668,7 @@ footer a{color:var(--cyan);text-decoration:none;}
 }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
 
@@ -692,8 +694,8 @@ footer a{color:var(--cyan);text-decoration:none;}
     <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
     <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
     <li><a href="#experience" data-i18n="nav.exp">Experience</a></li>
-    <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
     <li><a href="#certifications" data-i18n="nav.certs" style="position:relative;">Certifications<span style="position:absolute;top:-6px;right:-10px;width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 6px var(--cyan);"></span></a></li>
+    <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
   </ul>
   <div style="display:flex;align-items:center;gap:1rem;">
     <button id="lang-btn">PT</button>
@@ -710,8 +712,8 @@ footer a{color:var(--cyan);text-decoration:none;}
   <a href="#skills" data-i18n="nav.skills">Skills</a>
   <a href="#projects" data-i18n="nav.projects">Projects</a>
   <a href="#experience" data-i18n="nav.exp">Experience</a>
-  <a href="#contact" data-i18n="nav.contact">Contact</a>
   <a href="#certifications" data-i18n="nav.certs">Certifications</a>
+  <a href="#contact" data-i18n="nav.contact">Contact</a>
   <button id="lang-btn-mobile" style="font-family:'JetBrains Mono',monospace;font-size:1rem;background:none;border:1px solid rgba(0,240,255,0.3);color:#00F0FF;padding:0.6rem 1.5rem;border-radius:6px;cursor:none;">PT</button>
 </div>
 
@@ -816,6 +818,7 @@ footer a{color:var(--cyan);text-decoration:none;}
     <div class="skill-panel reveal reveal-delay-2">
       <div class="panel-title" data-i18n="skills.panel1">Engineering & Tech Universe</div>
       <div class="orbit-system" id="orbit-system">
+        <div class="orbit-ring"></div>
         <div class="orbit-ring"></div>
         <div class="orbit-ring"></div>
         <div class="orbit-ring"></div>
@@ -1068,84 +1071,6 @@ footer a{color:var(--cyan);text-decoration:none;}
   </div>
 </section>
 
-<!-- ════════ CONTACT ════════ -->
-<section id="contact">
-  <div class="section-tag reveal" data-i18n="contact.tag">Contact</div>
-  <h2 class="section-title reveal reveal-delay-1" data-i18n="contact.title">Let's Build<br/>Something</h2>
-  <div class="contact-grid">
-    <div class="terminal reveal reveal-delay-2">
-      <div class="terminal-bar">
-        <div class="t-dot red"></div>
-        <div class="t-dot yellow"></div>
-        <div class="t-dot green"></div>
-        <span style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:#666;margin-left:0.5rem;">contact.sh</span>
-      </div>
-      <div class="terminal-body">
-        <div class="t-line">
-          <span class="t-prompt">$</span>
-          <span class="t-label" data-i18n="contact.fname">name:</span>
-          <input class="t-input" id="t-name" type="text" placeholder="Your name" autocomplete="off"/>
-        </div>
-        <div class="t-line">
-          <span class="t-prompt">$</span>
-          <span class="t-label">email:</span>
-          <input class="t-input" id="t-email" type="email" placeholder="your@email.com" autocomplete="off"/>
-        </div>
-        <div class="t-line" style="align-items:flex-start;">
-          <span class="t-prompt" style="padding-top:2px;">$</span>
-          <span class="t-label" style="padding-top:2px;" data-i18n="contact.msg">msg:</span>
-          <textarea class="t-textarea" id="t-msg" placeholder="Your message..."></textarea>
-        </div>
-        <div class="t-send-line">
-          <span class="t-prompt">$</span>
-          <button class="t-send-btn" id="t-send" data-i18n="contact.send">send --confirm</button>
-        </div>
-        <div id="t-status"></div>
-      </div>
-    </div>
-    <div class="contact-info reveal reveal-delay-3">
-      <p data-i18n="contact.desc">Open to electrical engineering consultancy, fullstack development projects and technical collaborations. Based in Luanda, Angola — available remotely or on-site.</p>
-      <div class="social-links">
-        <a href="https://www.linkedin.com/in/sergio-joao-1bb2921aa" class="social-link">
-          <div class="s-icon">in</div>
-          <div>
-            <div style="font-size:0.85rem;font-weight:600;">LinkedIn</div>
-            <div class="social-cmd">$ open linkedin.com/in/sergio-joao</div>
-          </div>
-        </a>
-        <a href="https://github.com/sergiojoao375-lang" class="social-link">
-          <div class="s-icon" style="font-size:0.9rem;">⌥</div>
-          <div>
-            <div style="font-size:0.85rem;font-weight:600;">GitHub</div>
-            <div class="social-cmd">$ open github.com/sergiojoao375-lang</div>
-          </div>
-        </a>
-        <a href="mailto:sergiojoao375@gmail.com" class="social-link">
-          <div class="s-icon">@</div>
-          <div>
-            <div style="font-size:0.85rem;font-weight:600;">Email</div>
-            <div class="social-cmd">$ mail sergiojoao375@gmail.com</div>
-          </div>
-        </a>
-        <a href="https://wa.me/244931728474" class="social-link" target="_blank" rel="noopener">
-          <div class="s-icon" style="font-size:1rem;">💬</div>
-          <div>
-            <div style="font-size:0.85rem;font-weight:600;">WhatsApp</div>
-            <div class="social-cmd">$ wa.me/+244 931 728 474</div>
-          </div>
-        </a>
-        <a href="tel:+244931728474" class="social-link">
-          <div class="s-icon" style="font-size:1rem;">📞</div>
-          <div>
-            <div style="font-size:0.85rem;font-weight:600;">Phone</div>
-            <div class="social-cmd">$ call +244 931 728 474</div>
-          </div>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
 
 <!-- ════════ CERTIFICATIONS ════════ -->
 <section id="certifications" style="max-width:1280px;margin:0 auto;padding:7rem 3rem;">
@@ -1303,6 +1228,84 @@ footer a{color:var(--cyan);text-decoration:none;}
             color:var(--text3);padding:0.4rem 0.9rem;border-radius:4px;cursor:pointer;
           " data-i18n="certs.logout">Lock Admin ✕</button>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ CONTACT ════════ -->
+<section id="contact">
+  <div class="section-tag reveal" data-i18n="contact.tag">Contact</div>
+  <h2 class="section-title reveal reveal-delay-1" data-i18n="contact.title">Let's Build<br/>Something</h2>
+  <div class="contact-grid">
+    <div class="terminal reveal reveal-delay-2">
+      <div class="terminal-bar">
+        <div class="t-dot red"></div>
+        <div class="t-dot yellow"></div>
+        <div class="t-dot green"></div>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:#666;margin-left:0.5rem;">contact.sh</span>
+      </div>
+      <div class="terminal-body">
+        <div class="t-line">
+          <span class="t-prompt">$</span>
+          <span class="t-label" data-i18n="contact.fname">name:</span>
+          <input class="t-input" id="t-name" type="text" placeholder="Your name" autocomplete="off"/>
+        </div>
+        <div class="t-line">
+          <span class="t-prompt">$</span>
+          <span class="t-label">email:</span>
+          <input class="t-input" id="t-email" type="email" placeholder="your@email.com" autocomplete="off"/>
+        </div>
+        <div class="t-line" style="align-items:flex-start;">
+          <span class="t-prompt" style="padding-top:2px;">$</span>
+          <span class="t-label" style="padding-top:2px;" data-i18n="contact.msg">msg:</span>
+          <textarea class="t-textarea" id="t-msg" placeholder="Your message..."></textarea>
+        </div>
+        <div class="t-send-line">
+          <span class="t-prompt">$</span>
+          <button class="t-send-btn" id="t-send" data-i18n="contact.send">send --confirm</button>
+        </div>
+        <div id="t-status"></div>
+      </div>
+    </div>
+    <div class="contact-info reveal reveal-delay-3">
+      <p data-i18n="contact.desc">Open to electrical engineering consultancy, fullstack development projects and technical collaborations. Based in Luanda, Angola — available remotely or on-site.</p>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/sergio-joao-1bb2921aa" class="social-link">
+          <div class="s-icon">in</div>
+          <div>
+            <div style="font-size:0.85rem;font-weight:600;">LinkedIn</div>
+            <div class="social-cmd">$ open linkedin.com/in/sergio-joao</div>
+          </div>
+        </a>
+        <a href="https://github.com/sergiojoao375-lang" class="social-link">
+          <div class="s-icon" style="font-size:0.9rem;">⌥</div>
+          <div>
+            <div style="font-size:0.85rem;font-weight:600;">GitHub</div>
+            <div class="social-cmd">$ open github.com/sergiojoao375-lang</div>
+          </div>
+        </a>
+        <a href="mailto:sergiojoao375@gmail.com" class="social-link">
+          <div class="s-icon">@</div>
+          <div>
+            <div style="font-size:0.85rem;font-weight:600;">Email</div>
+            <div class="social-cmd">$ mail sergiojoao375@gmail.com</div>
+          </div>
+        </a>
+        <a href="https://wa.me/244931728474" class="social-link" target="_blank" rel="noopener">
+          <div class="s-icon" style="font-size:1rem;">💬</div>
+          <div>
+            <div style="font-size:0.85rem;font-weight:600;">WhatsApp</div>
+            <div class="social-cmd">$ wa.me/+244 931 728 474</div>
+          </div>
+        </a>
+        <a href="tel:+244931728474" class="social-link">
+          <div class="s-icon" style="font-size:1rem;">📞</div>
+          <div>
+            <div style="font-size:0.85rem;font-weight:600;">Phone</div>
+            <div class="social-cmd">$ call +244 931 728 474</div>
+          </div>
+        </a>
       </div>
     </div>
   </div>
@@ -1624,8 +1627,9 @@ document.getElementById('lang-btn-mobile').addEventListener('click', () => apply
   if (!sys) return;
   const orbits = [
     { items: ['AutoCAD','Electrical BT/MT','PLC'], r: 60, speed: 0.4 },
-    { items: ['React','Node.js','Python','Excel'], r: 95, speed: 0.25 },
-    { items: ['PostgreSQL','Docker','Git','Instrumentation','Budgeting'], r: 130, speed: 0.15 }
+    { items: ['React','Node.js','Python','HTML5','CSS3'], r: 95, speed: 0.25 },
+    { items: ['JavaScript','Java','C#','C++','MySQL','PostgreSQL'], r: 130, speed: 0.15 },
+    { items: ['Unity','Docker','Git','Excel','Instrumentation','Budgeting'], r: 168, speed: 0.09 }
   ];
   orbits.forEach((o, oi) => {
     o.items.forEach((name, idx) => {
@@ -1707,26 +1711,88 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 /* ════════════════════════════════
    TERMINAL CONTACT
 ════════════════════════════════ */
-document.getElementById('t-send').addEventListener('click', async () => {
-  const name = document.getElementById('t-name').value.trim();
-  const email = document.getElementById('t-email').value.trim();
-  const msg = document.getElementById('t-msg').value.trim();
-  const status = document.getElementById('t-status');
-  if (!name || !email || !msg) {
-    status.textContent = i18n[currentLang]['contact.err'];
-    status.style.color = '#FF2D78';
-    return;
+/* ════════════════════════════════
+   EMAILJS CONFIG
+   1. Crie conta em emailjs.com (gratuito)
+   2. Add Email Service → copie o Service ID
+   3. Create Email Template → copie o Template ID
+   4. Account → API Keys → copie a Public Key
+   5. Cole os 3 valores abaixo
+════════════════════════════════ */
+(function initContact() {
+  const EJS_PUBLIC_KEY  = 'mbMcf3J4i70_plubb';   // ex: user_abc123
+  const EJS_SERVICE_ID  = 'service_gdcnvm9';        // ex: service_xyz
+  const EJS_TEMPLATE_ID = 'fb44bvf';       // ex: template_abc
+
+  const EMAILJS_READY = !EJS_PUBLIC_KEY.startsWith('COLE');
+
+  if (EMAILJS_READY) {
+    emailjs.init({ publicKey: EJS_PUBLIC_KEY });
+    console.log('[Contact] ✅ EmailJS iniciado.');
+  } else {
+    console.warn('[Contact] ⚠️ EmailJS não configurado. Visite emailjs.com para configurar o envio de emails.');
   }
-  const steps = ['send.e','send.s','send.d'];
-  status.style.color = '#00FF88';
-  for (const s of steps) {
-    status.textContent = '> ' + i18n[currentLang][s];
-    await new Promise(r => setTimeout(r, 700));
-  }
-  document.getElementById('t-name').value = '';
-  document.getElementById('t-email').value = '';
-  document.getElementById('t-msg').value = '';
-});
+
+  document.getElementById('t-send').addEventListener('click', async () => {
+    const name   = document.getElementById('t-name').value.trim();
+    const email  = document.getElementById('t-email').value.trim();
+    const msg    = document.getElementById('t-msg').value.trim();
+    const status = document.getElementById('t-status');
+    const btn    = document.getElementById('t-send');
+
+    if (!name || !email || !msg) {
+      status.style.color = '#FF2D78';
+      status.textContent = '> ' + i18n[currentLang]['contact.err'];
+      return;
+    }
+
+    // Animate button
+    btn.textContent = 'sending...';
+    btn.disabled = true;
+    status.style.color = '#00FF88';
+    status.textContent = '> ' + (currentLang === 'pt' ? 'A encriptar mensagem...' : 'Encrypting message...');
+
+    if (!EMAILJS_READY) {
+      // Fallback: open default mail client
+      await new Promise(r => setTimeout(r, 600));
+      status.textContent = '> ' + (currentLang === 'pt' ? 'A abrir cliente de email...' : 'Opening mail client...');
+      await new Promise(r => setTimeout(r, 600));
+      const subject = encodeURIComponent('Contacto do Portfólio — ' + name);
+      const body    = encodeURIComponent('Nome: ' + name + '\nEmail: ' + email + '\n\nMensagem:\n' + msg);
+      window.open('mailto:sergiojoao375@gmail.com?subject=' + subject + '&body=' + body);
+      status.textContent = '> ' + (currentLang === 'pt' ? '✓ Cliente de email aberto!' : '✓ Mail client opened!');
+      document.getElementById('t-name').value  = '';
+      document.getElementById('t-email').value = '';
+      document.getElementById('t-msg').value   = '';
+      btn.textContent = 'send --confirm';
+      btn.disabled = false;
+      return;
+    }
+
+    try {
+      await emailjs.send(EJS_SERVICE_ID, EJS_TEMPLATE_ID, {
+        from_name:    name,
+        from_email:   email,
+        message:      msg,
+        to_email:     'sergiojoao375@gmail.com',
+        reply_to:     email,
+      });
+      status.textContent = '> ' + i18n[currentLang]['send.s'];
+      await new Promise(r => setTimeout(r, 500));
+      status.textContent = '> ' + i18n[currentLang]['send.d'];
+      document.getElementById('t-name').value  = '';
+      document.getElementById('t-email').value = '';
+      document.getElementById('t-msg').value   = '';
+    } catch(err) {
+      status.style.color  = '#FF2D78';
+      status.textContent  = '> ✗ ' + (currentLang === 'pt' ? 'Erro ao enviar. Tente novamente.' : 'Send failed. Please try again.');
+      console.error('[Contact] EmailJS error:', err);
+    } finally {
+      btn.textContent = 'send --confirm';
+      btn.disabled = false;
+    }
+  });
+})();
 
 /* ════════════════════════════════
    MOBILE MENU
