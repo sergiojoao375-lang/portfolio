@@ -635,36 +635,135 @@ footer a{color:var(--cyan);text-decoration:none;}
 /* ════════════════════════════════
    RESPONSIVE
 ════════════════════════════════ */
-@media(max-width:1024px){
-  #certs-grid{ grid-template-columns: repeat(2,1fr) !important; }
+/* ═══════════════════════
+   RESPONSIVE — 1280px (large desktop)
+═══════════════════════ */
+@media(max-width:1280px){
+  .projects-grid{grid-template-columns:repeat(3,1fr);}
+  #certs-grid{grid-template-columns:repeat(3,1fr) !important;}
+  .orbit-system{width:300px;height:300px;}
 }
-@media(max-width:600px){
-  #certs-grid{ grid-template-columns: 1fr !important; }
-}
+
+/* ═══════════════════════
+   RESPONSIVE — 1024px (tablet landscape)
+═══════════════════════ */
 @media(max-width:1024px){
   section{padding:5rem 2rem;}
+  #hero{padding:0 2rem;}
+
+  /* About */
   #about .about-grid{grid-template-columns:1fr;gap:3rem;}
+  .about-card-inner{max-width:360px;margin:0 auto;}
+
+  /* Skills */
   #skills .skills-wrapper{grid-template-columns:1fr;}
+  .orbit-system{width:260px;height:260px;}
+
+  /* Projects */
   .projects-grid{grid-template-columns:repeat(2,1fr);}
+
+  /* Certifications */
+  #certs-grid{grid-template-columns:repeat(2,1fr) !important;}
+
+  /* Contact */
   .contact-grid{grid-template-columns:1fr;}
+
+  /* Timeline */
   .timeline::before{left:20px;}
   .tl-item{grid-template-columns:28px 1fr;}
   .tl-item .tl-content.tl-main{display:block;grid-column:2;}
   .tl-item .tl-content.tl-empty{display:none;}
   .tl-spacer{grid-column:1;padding-top:1.5rem;}
 }
+
+/* ═══════════════════════
+   RESPONSIVE — 768px (tablet portrait / large phone)
+═══════════════════════ */
 @media(max-width:768px){
-  #hero{padding:0 1.5rem;}
-  section{padding:4rem 1.5rem;}
+  /* Navbar */
+  #navbar{padding:1rem 1.5rem;}
   .nav-links{display:none;}
   #hamburger{display:flex;}
   #lang-btn{display:none;}
-  .projects-grid{grid-template-columns:1fr;}
-  .stats-row{grid-template-columns:repeat(3,1fr);}
-  footer{flex-direction:column;gap:1rem;text-align:center;padding:2rem 1.5rem;}
-  #navbar{padding:1rem 1.5rem;}
+
+  /* Hero */
+  #hero{padding:0 1.5rem;}
+  .hero-title{font-size:clamp(2.2rem,11vw,4rem);}
+  .hero-desc{font-size:0.95rem;}
   .hero-ctas{flex-direction:column;}
-  .btn-primary,.btn-secondary{text-align:center;justify-content:center;}
+  .btn-primary,.btn-secondary{text-align:center;justify-content:center;width:100%;}
+
+  /* Sections */
+  section{padding:4rem 1.5rem;}
+
+  /* About */
+  .stats-row{grid-template-columns:repeat(3,1fr);}
+  .avatar{width:160px !important;height:160px !important;}
+  .avatar img{width:160px !important;height:160px !important;}
+
+  /* Skills orbit — static grid on mobile */
+  .orbit-system{width:240px;height:240px;}
+
+  /* Projects */
+  .projects-grid{grid-template-columns:1fr;}
+
+  /* Certifications */
+  #certs-grid{grid-template-columns:1fr !important;}
+
+  /* Experience — certifications admin */
+  #certs-admin-panel > div{padding:1.25rem;}
+  #cert-form-area > div:first-of-type{grid-template-columns:1fr !important;}
+
+  /* Footer */
+  footer{flex-direction:column;gap:1rem;text-align:center;padding:2rem 1.5rem;}
+
+  /* Video modal */
+  #video-modal{padding:1rem;}
+}
+
+/* ═══════════════════════
+   RESPONSIVE — 480px (small phone)
+═══════════════════════ */
+@media(max-width:480px){
+  /* Hero */
+  .hero-title{font-size:clamp(1.8rem,9vw,2.8rem);}
+  .line-role{font-size:clamp(1rem,5vw,1.6rem) !important;}
+
+  /* Navbar logo */
+  .nav-logo{font-size:0.9rem;}
+
+  /* Stats row — stack on very small */
+  .stats-row{grid-template-columns:1fr 1fr;gap:0.75rem;}
+
+  /* Section titles */
+  .section-title{font-size:clamp(1.8rem,8vw,2.5rem);}
+
+  /* About card */
+  .avatar{width:120px !important;height:120px !important;}
+  .avatar img{width:120px !important;height:120px !important;}
+
+  /* Skills panel */
+  .skill-panel{padding:1.5rem 1rem;}
+  .orbit-system{width:200px;height:200px;}
+  .orbit-ring:nth-child(4){width:196px;height:196px;}
+
+  /* Certifications grid */
+  #certs-grid{grid-template-columns:1fr !important;}
+
+  /* Contact terminal */
+  .terminal-body{padding:1rem;}
+  .contact-grid{gap:2rem;}
+
+  /* Timeline */
+  .tl-role{font-size:0.9rem;}
+  .tl-desc{font-size:0.78rem;}
+
+  /* Project filters */
+  .project-filters{gap:0.5rem;}
+  .filter-btn{font-size:0.65rem;padding:0.35rem 0.8rem;}
+
+  /* Video modal */
+  #video-modal-inner{border-radius:10px;}
 }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
@@ -830,36 +929,36 @@ footer a{color:var(--cyan);text-decoration:none;}
       <div class="panel-title" data-i18n="skills.panel2">Skills Proficiency</div>
       <div class="skill-bars" id="skill-bars">
         <div class="skill-bar-item">
-          <div class="skill-bar-header"><span class="skill-bar-name">AutoCAD / Technical Drawing</span><span class="skill-bar-pct">90%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="90"></div></div>
+          <div class="skill-bar-header"><span class="skill-bar-name">AutoCAD / Technical Drawing</span><span class="skill-bar-pct">55%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="55"></div></div>
         </div>
         <div class="skill-bar-item">
-          <div class="skill-bar-header"><span class="skill-bar-name">Electrical Systems BT/MT</span><span class="skill-bar-pct">95%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="92"></div></div>
+          <div class="skill-bar-header"><span class="skill-bar-name">Electrical Systems BT/MT</span><span class="skill-bar-pct">58%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="58"></div></div>
         </div>
         <div class="skill-bar-item">
-          <div class="skill-bar-header"><span class="skill-bar-name">Industrial Automation / PLC</span><span class="skill-bar-pct">82%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="88"></div></div>
+          <div class="skill-bar-header"><span class="skill-bar-name">Industrial Automation / PLC</span><span class="skill-bar-pct">48%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="48"></div></div>
         </div>
         <div class="skill-bar-item">
-          <div class="skill-bar-header"><span class="skill-bar-name">Microsoft Excel Advanced</span><span class="skill-bar-pct">92%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="78"></div></div>
+          <div class="skill-bar-header"><span class="skill-bar-name">Microsoft Excel Advanced</span><span class="skill-bar-pct">52%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="52"></div></div>
         </div>
         <div class="skill-bar-item">
-          <div class="skill-bar-header"><span class="skill-bar-name">Technical Budgeting</span><span class="skill-bar-pct">88%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="72"></div></div>
+          <div class="skill-bar-header"><span class="skill-bar-name">Technical Budgeting</span><span class="skill-bar-pct">56%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="56"></div></div>
         </div>
         <div class="skill-bar-item">
-          <div class="skill-bar-header"><span class="skill-bar-name">React / TypeScript</span><span class="skill-bar-pct">85%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="96"></div></div>
+          <div class="skill-bar-header"><span class="skill-bar-name">React / TypeScript</span><span class="skill-bar-pct">45%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="45"></div></div>
         </div>
         <div class="skill-bar-item">
-          <div class="skill-bar-header"><span class="skill-bar-name">Node.js / Python</span><span class="skill-bar-pct">80%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="90"></div></div>
+          <div class="skill-bar-header"><span class="skill-bar-name">Node.js / Python</span><span class="skill-bar-pct">43%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="43"></div></div>
         </div>
         <div class="skill-bar-item">
-          <div class="skill-bar-header"><span class="skill-bar-name">Technical Reporting</span><span class="skill-bar-pct">93%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="82"></div></div>
+          <div class="skill-bar-header"><span class="skill-bar-name">Technical Reporting</span><span class="skill-bar-pct">60%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-pct="60"></div></div>
         </div>
       </div>
     </div>
@@ -1729,7 +1828,7 @@ document.getElementById('lang-btn-mobile').addEventListener('click', () => apply
       const angle0 = (2 * Math.PI / o.items.length) * idx;
       el.style.cssText = `
         position:absolute;top:50%;left:50%;
-        font-family:'JetBrains Mono',monospace;font-size:0.65rem;
+        font-family:monospace,monospace;font-size:0.65rem;
         white-space:nowrap;
         background:rgba(0,240,255,0.07);
         border:1px solid rgba(0,240,255,0.15);
@@ -2120,7 +2219,7 @@ if (window.matchMedia('(max-width:768px)').matches) {
         if (!ok) {
           wrap.innerHTML = '<div style="height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;background:linear-gradient(135deg,#080E1C,#0D1526);">'
             + '<span style="font-size:2.5rem;">📄</span>'
-            + '<span style="font-family:\'JetBrains Mono\',monospace;font-size:0.6rem;color:#00F0FF;letter-spacing:0.1em;">PDF</span>'
+            + '<span style="font-family:monospace,monospace;font-size:0.6rem;color:#00F0FF;letter-spacing:0.1em;">PDF</span>'
             + '</div>';
         } else {
           cv.style.cssText = 'width:100%;height:auto;display:block;';
@@ -2145,7 +2244,7 @@ if (window.matchMedia('(max-width:768px)').matches) {
     if (existing) return;
     const b = document.createElement('div');
     b.id = 'local-mode-banner';
-    b.style.cssText = 'position:fixed;bottom:1.2rem;right:1.2rem;background:rgba(13,21,38,0.97);border:1px solid rgba(255,184,0,0.35);border-radius:10px;padding:0.85rem 1.1rem;z-index:8000;font-family:"JetBrains Mono",monospace;font-size:0.72rem;color:#FFB800;max-width:340px;box-shadow:0 8px 32px rgba(0,0,0,0.5);';
+    b.style.cssText = 'position:fixed;bottom:1.2rem;right:1.2rem;background:rgba(13,21,38,0.97);border:1px solid rgba(255,184,0,0.35);border-radius:10px;padding:0.85rem 1.1rem;z-index:8000;font-family:monospace,monospace;font-size:0.72rem;color:#FFB800;max-width:340px;box-shadow:0 8px 32px rgba(0,0,0,0.5);';
     b.innerHTML = '<div style="display:flex;align-items:flex-start;gap:0.6rem;"><span style="flex-shrink:0;">☁️</span><div><strong>Modo local activo</strong><br><span style="color:rgba(255,184,0,0.75);">As certificações são guardadas localmente. Para sincronizar com a nuvem, hospede o portfólio online (ex: Netlify, GitHub Pages).</span></div><button onclick="this.parentElement.parentElement.remove()" style="background:none;border:none;color:#FFB800;font-size:1rem;cursor:pointer;flex-shrink:0;margin-left:0.5rem;">✕</button></div>';
     document.body.appendChild(b);
     setTimeout(() => { if (b.parentElement) b.remove(); }, 8000);
@@ -2168,11 +2267,11 @@ if (window.matchMedia('(max-width:768px)').matches) {
     // Spinner
     const spin = document.createElement('div');
     spin.id = 'certs-spinner';
-    spin.style.cssText = 'grid-column:1/-1;text-align:center;padding:3rem;font-family:"JetBrains Mono",monospace;font-size:0.78rem;color:#00F0FF;';
+    spin.style.cssText = 'grid-column:1/-1;text-align:center;padding:3rem;font-family:monospace,monospace;font-size:0.78rem;color:#00F0FF;';
     spin.innerHTML = '<div style="width:24px;height:24px;border:2px solid rgba(0,240,255,0.2);border-top-color:#00F0FF;border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 0.75rem;"></div>Loading...';
     grid.appendChild(spin);
 
-    _allCerts = await loadAll();
+    _allCerts = applySavedOrder(await loadAll());
     spin.remove();
 
     if (!_allCerts || _allCerts.length === 0) {
@@ -2216,13 +2315,13 @@ if (window.matchMedia('(max-width:768px)').matches) {
       card.innerHTML = makeThumb(img, t.icon, cert.title, cert.id || String(Date.now() + i)) + `
         <div style="padding:1rem;">
           <div style="display:flex;align-items:center;gap:0.4rem;margin-bottom:0.6rem;flex-wrap:wrap;">
-            <span style="font-family:'JetBrains Mono',monospace;font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.18rem 0.45rem;border-radius:4px;background:${t.bg};color:${t.color};border:1px solid ${t.color}44;">${t.icon} ${t.label}</span>
-            ${date ? `<span style="font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:#4A5568;margin-left:auto;">${fmtDate(date)}</span>` : ''}
+            <span style="font-family:monospace,monospace;font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.18rem 0.45rem;border-radius:4px;background:${t.bg};color:${t.color};border:1px solid ${t.color}44;">${t.icon} ${t.label}</span>
+            ${date ? `<span style="font-family:monospace,monospace;font-size:0.58rem;color:#4A5568;margin-left:auto;">${fmtDate(date)}</span>` : ''}
           </div>
           <div style="font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:800;margin-bottom:0.25rem;color:#E8EDF5;line-height:1.3;">${cert.title}</div>
           <div style="font-size:0.72rem;color:${t.color};margin-bottom:${desc?'0.5rem':'0'};">${cert.issuer}</div>
           ${desc ? `<p style="font-size:0.72rem;color:#8892A4;line-height:1.5;margin-bottom:0.6rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${desc}</p>` : ''}
-          ${url  ? `<a href="${url}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.3rem;font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:${t.color};text-decoration:none;border-bottom:1px solid ${t.color}55;padding-bottom:1px;">↗ View Credential</a>` : ''}
+          ${url  ? `<a href="${url}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.3rem;font-family:monospace,monospace;font-size:0.65rem;color:${t.color};text-decoration:none;border-bottom:1px solid ${t.color}55;padding-bottom:1px;">↗ View Credential</a>` : ''}
         </div>`;
 
       grid.appendChild(card);
@@ -2240,34 +2339,102 @@ if (window.matchMedia('(max-width:768px)').matches) {
   });
 
   /* ── RENDER MANAGE LIST ── */
+  /* ── ORDER KEY ── */
+  const ORDER_KEY = 'sergio_certs_order';
+  function getSavedOrder()  { try { return JSON.parse(localStorage.getItem(ORDER_KEY)) || []; } catch(e) { return []; } }
+  function saveOrder(ids)   { localStorage.setItem(ORDER_KEY, JSON.stringify(ids)); }
+  function applySavedOrder(certs) {
+    const order = getSavedOrder();
+    if (!order.length) return certs;
+    const map = Object.fromEntries(certs.map(c => [String(c.id), c]));
+    const sorted = order.map(id => map[id]).filter(Boolean);
+    certs.forEach(c => { if (!order.includes(String(c.id))) sorted.push(c); });
+    return sorted;
+  }
+
+  /* ── RENDER MANAGE LIST with drag-and-drop ── */
   async function renderList() {
     const list = document.getElementById('certs-manage-list');
-    list.innerHTML = '<div style="font-family:\'JetBrains Mono\',monospace;font-size:0.75rem;color:#4A5568;padding:0.5rem;">Loading...</div>';
-    const certs = await loadAll();
+    list.innerHTML = '<div style="font-family:monospace,monospace;font-size:0.75rem;color:#4A5568;padding:0.5rem;">Loading...</div>';
+    const raw   = await loadAll();
+    const certs = applySavedOrder(raw);
     list.innerHTML = '';
     if (!certs || certs.length === 0) {
-      list.innerHTML = '<div style="font-family:\'JetBrains Mono\',monospace;font-size:0.75rem;color:#4A5568;padding:0.5rem;">No certifications yet.</div>';
+      list.innerHTML = '<div style="font-family:monospace,monospace;font-size:0.75rem;color:#4A5568;padding:0.5rem;">No certifications yet.</div>';
       return;
     }
+    const hint = document.createElement('div');
+    hint.style.cssText = 'font-family:monospace,monospace;font-size:0.65rem;color:#4A5568;letter-spacing:0.08em;padding:0 0 0.5rem;';
+    hint.textContent = "⠇  Drag rows or use ▲▼ to reorder";
+    list.appendChild(hint);
+
+    let dragSrc = null;
+
+    function persistOrder() {
+      const ids = [...list.querySelectorAll('[draggable][data-id]')].map(r => r.dataset.id);
+      saveOrder(ids);
+      renderGrid();
+    }
+
     certs.forEach(cert => {
       const t = TYPES[cert.type] || TYPES.certificate;
       const row = document.createElement('div');
-      row.style.cssText = 'display:flex;align-items:center;gap:0.75rem;padding:0.65rem 0.9rem;border-radius:8px;background:rgba(255,255,255,0.02);border:1px solid rgba(0,240,255,0.12);margin-bottom:0.5rem;';
-      row.innerHTML = `
-        <span style="font-size:1.1rem;flex-shrink:0;">${t.icon}</span>
-        <div style="flex:1;min-width:0;">
-          <div style="font-weight:600;color:#E8EDF5;font-size:0.85rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${cert.title}</div>
-          <div style="font-size:0.72rem;color:#4A5568;">${cert.issuer}${cert.date?' · '+fmtDate(cert.date):''}</div>
-        </div>
-        <button style="background:rgba(255,45,120,0.1);border:1px solid rgba(255,45,120,0.25);color:#FF2D78;border-radius:6px;padding:0.3rem 0.7rem;font-size:0.72rem;cursor:pointer;font-family:'JetBrains Mono',monospace;flex-shrink:0;" data-id="${cert.id}">✕ Delete</button>`;
-      row.querySelector('[data-id]').addEventListener('click', async function() {
+      row.draggable = true;
+      row.dataset.id = String(cert.id);
+      row.style.cssText = 'display:flex;align-items:center;gap:0.75rem;padding:0.65rem 0.9rem;border-radius:8px;background:rgba(255,255,255,0.02);border:1px solid rgba(0,240,255,0.12);margin-bottom:0.5rem;cursor:grab;user-select:none;transition:opacity 0.2s,border-color 0.2s;';
+
+      row.innerHTML =
+        '<span style="font-size:1.1rem;color:#4A5568;flex-shrink:0;">⠿</span>' +
+        '<span style="font-size:1.1rem;flex-shrink:0;">' + t.icon + '</span>' +
+        '<div style="flex:1;min-width:0;">' +
+          '<div style="font-weight:600;color:#E8EDF5;font-size:0.85rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + cert.title + '</div>' +
+          '<div style="font-size:0.72rem;color:#4A5568;">' + cert.issuer + (cert.date ? ' · ' + fmtDate(cert.date) : '') + '</div>' +
+        '</div>' +
+        '<div style="display:flex;flex-direction:column;gap:3px;margin-right:0.25rem;">' +
+          '<button class="up-btn" title="Move up" style="background:rgba(0,240,255,0.07);border:1px solid rgba(0,240,255,0.2);color:#00F0FF;border-radius:4px;padding:2px 6px;font-size:0.65rem;cursor:pointer;">▲</button>' +
+          '<button class="dn-btn" title="Move down" style="background:rgba(0,240,255,0.07);border:1px solid rgba(0,240,255,0.2);color:#00F0FF;border-radius:4px;padding:2px 6px;font-size:0.65rem;cursor:pointer;">▼</button>' +
+        '</div>' +
+        '<button class="del-btn" data-id="' + cert.id + '" style="background:rgba(255,45,120,0.1);border:1px solid rgba(255,45,120,0.25);color:#FF2D78;border-radius:6px;padding:0.3rem 0.7rem;font-size:0.72rem;cursor:pointer;font-family:monospace,monospace;flex-shrink:0;">✕</button>';
+
+      // Drag events
+      row.addEventListener('dragstart', e => { dragSrc = row; row.style.opacity='0.4'; e.dataTransfer.effectAllowed='move'; });
+      row.addEventListener('dragend',   () => {
+        row.style.opacity='1';
+        list.querySelectorAll('[draggable]').forEach(r => r.style.borderColor='rgba(0,240,255,0.12)');
+        persistOrder();
+      });
+      row.addEventListener('dragover',  e => {
+        e.preventDefault();
+        if (row === dragSrc) return;
+        row.style.borderColor='var(--cyan)';
+        const rows=[...list.querySelectorAll('[draggable]')];
+        if (rows.indexOf(dragSrc) < rows.indexOf(row)) list.insertBefore(dragSrc, row.nextSibling);
+        else list.insertBefore(dragSrc, row);
+      });
+      row.addEventListener('dragleave', () => { if(row!==dragSrc) row.style.borderColor='rgba(0,240,255,0.12)'; });
+      row.addEventListener('drop',      e => e.preventDefault());
+
+      // Arrow buttons
+      row.querySelector('.up-btn').addEventListener('click', () => {
+        const prev = row.previousElementSibling;
+        if (prev && prev.draggable) { list.insertBefore(row, prev); persistOrder(); }
+      });
+      row.querySelector('.dn-btn').addEventListener('click', () => {
+        const next = row.nextElementSibling;
+        if (next && next.draggable) { list.insertBefore(next, row); persistOrder(); }
+      });
+
+      // Delete
+      row.querySelector('.del-btn').addEventListener('click', async function() {
         const id = this.dataset.id;
         if (!confirm('Delete "' + cert.title + '"?')) return;
-        this.textContent = '...'; this.disabled = true;
+        this.textContent='...'; this.disabled=true;
         await deleteCert(id);
+        saveOrder(getSavedOrder().filter(i => i !== String(id)));
         await renderGrid();
         await renderList();
       });
+
       list.appendChild(row);
     });
   }
