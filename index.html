@@ -978,130 +978,68 @@ footer a{color:var(--cyan);text-decoration:none;}
   <div class="projects-grid" id="projects-grid">
 
     <div class="project-card reveal" data-cat="fullstack">
-      <div class="project-thumb">
-        <span class="project-thumb-icon">🛒</span>
+      <div class="project-thumb" style="background:linear-gradient(135deg,#0a0d1a,#0d1535);">
+        <span class="project-thumb-icon">🇬🇧</span>
         <div class="project-thumb-overlay">
-          <button class="thumb-btn demo-btn" data-i18n="proj.demo" data-video="https://www.youtube.com/embed/VIDEO_ID?autoplay=1" data-title="Project Demo" onclick="openVideoModal(this)">Live Demo</button>
+          <a href="https://delcio-english.netlify.app" target="_blank" rel="noopener" class="thumb-btn">Live Demo</a>
           <span class="thumb-btn" style="opacity:0.3;cursor:not-allowed;pointer-events:none;">GitHub</span>
         </div>
       </div>
       <div class="project-body">
         <span class="project-tag tag-fullstack">Fullstack</span>
-        <div class="project-title" data-i18n="proj.p1.title">E-Commerce Platform</div>
-        <p class="project-desc" data-i18n="proj.p1.desc">Full-featured e-commerce with real-time inventory, payment integration and admin dashboard.</p>
+        <div class="project-title" data-i18n="proj.p1.title">Delcio English</div>
+        <p class="project-desc" data-i18n="proj.p1.desc">Interactive web application for English language teaching and practice. Features real-time database management, student-focused UX, authentication and dynamic components for a fluid learning experience.</p>
         <div class="project-stack">
+          <span class="stack-badge">TypeScript / JavaScript</span>
           <span class="stack-badge">React</span>
-          <span class="stack-badge">Node.js</span>
-          <span class="stack-badge">PostgreSQL</span>
-          <span class="stack-badge">Stripe</span>
+          <span class="stack-badge">Tailwind CSS</span>
+          <span class="stack-badge">Supabase</span>
+          <span class="stack-badge">Vite & Nitro</span>
         </div>
       </div>
-    </div>
-
-    <div class="project-card reveal reveal-delay-1" data-cat="fullstack">
-      <div class="project-thumb" style="background:linear-gradient(135deg,#0a1a0a,#0d2010);">
-        <span class="project-thumb-icon">🍎</span>
+    </div>    <div class="project-card reveal reveal-delay-1" data-cat="data">
+      <div class="project-thumb" style="background:linear-gradient(135deg,#0d1200,#1a2200);">
+        <span class="project-thumb-icon">⚡</span>
         <div class="project-thumb-overlay">
-          <button class="thumb-btn demo-btn" data-i18n="proj.demo" data-video="https://www.youtube.com/embed/CyAbLR4wvUE?autoplay=1" data-title="NutriShare" onclick="openVideoModal(this)">Live Demo</button>
+          <a href="https://plug-calc-carga.lovable.app/" target="_blank" rel="noopener" class="thumb-btn">Live Demo</a>
           <span class="thumb-btn" style="opacity:0.3;cursor:not-allowed;pointer-events:none;">GitHub</span>
         </div>
       </div>
       <div class="project-body">
-        <span class="project-tag tag-fullstack" style="background:rgba(0,255,136,0.08);color:var(--green);border-color:rgba(0,255,136,0.2);">Full-Stack &amp; Impacto Social</span>
-        <div class="project-title" data-i18n="proj.p2.title">NutriShare</div>
-        <p class="project-desc" data-i18n="proj.p2.desc">Plataforma web para combater a fome e mitigar o desperdício de alimentos, conectando estabelecimentos comerciais com excedentes a ONGs e famílias vulneráveis através de perfis de doador e recetor com painéis de controlo dedicados.</p>
+        <span class="project-tag tag-data" style="background:rgba(255,184,0,0.08);color:#FFB800;border:1px solid rgba(255,184,0,0.2);">Engenharia Elétrica &amp; RTIEBT</span>
+        <div class="project-title" data-i18n="proj.p3.title">PLUGTECH CalcStudio Pro</div>
+        <p class="project-desc" data-i18n="proj.p3.desc">Software profissional de cálculo e dimensionamento de instalações elétricas de Baixa Tensão segundo o RTIEBT. Automatiza cálculos de potência aparente majorada, queda de tensão acumulada, coordenação de proteções (IEC 60364), verificação de Icc (IEC 60898-1), dimensionamento de tubagens e equilíbrio algorítmico avançado de fases.</p>
         <div class="project-stack">
-          <span class="stack-badge">Python &amp; Flask</span>
-          <span class="stack-badge">SQLite (SQL JOINs)</span>
-          <span class="stack-badge">JavaScript (Fetch API)</span>
-          <span class="stack-badge">i18n / Dark Mode</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="project-card reveal reveal-delay-2" data-cat="aiml">
-      <div class="project-thumb">
-        <span class="project-thumb-icon">🤖</span>
-        <div class="project-thumb-overlay">
-          <button class="thumb-btn demo-btn" data-i18n="proj.demo" data-video="https://www.youtube.com/embed/VIDEO_ID?autoplay=1" data-title="Project Demo" onclick="openVideoModal(this)">Live Demo</button>
-          <span class="thumb-btn" style="opacity:0.3;cursor:not-allowed;pointer-events:none;">GitHub</span>
-        </div>
-      </div>
-      <div class="project-body">
-        <span class="project-tag tag-aiml">AI / ML</span>
-        <div class="project-title" data-i18n="proj.p3.title">Churn Prediction Engine</div>
-        <p class="project-desc" data-i18n="proj.p3.desc">ML model achieving 91% accuracy predicting customer churn 30 days in advance.</p>
-        <div class="project-stack">
-          <span class="stack-badge">TensorFlow</span>
-          <span class="stack-badge">Python</span>
-          <span class="stack-badge">FastAPI</span>
-          <span class="stack-badge">Docker</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="project-card reveal reveal-delay-1" data-cat="fullstack">
-      <div class="project-thumb">
-        <span class="project-thumb-icon">💬</span>
-        <div class="project-thumb-overlay">
-          <button class="thumb-btn demo-btn" data-i18n="proj.demo" data-video="https://www.youtube.com/embed/VIDEO_ID?autoplay=1" data-title="Project Demo" onclick="openVideoModal(this)">Live Demo</button>
-          <span class="thumb-btn" style="opacity:0.3;cursor:not-allowed;pointer-events:none;">GitHub</span>
-        </div>
-      </div>
-      <div class="project-body">
-        <span class="project-tag tag-fullstack">Fullstack</span>
-        <div class="project-title" data-i18n="proj.p4.title">Real-Time Chat App</div>
-        <p class="project-desc" data-i18n="proj.p4.desc">WebSocket-based messaging platform supporting 10K concurrent users with end-to-end encryption.</p>
-        <div class="project-stack">
-          <span class="stack-badge">React</span>
-          <span class="stack-badge">Socket.io</span>
-          <span class="stack-badge">MongoDB</span>
-          <span class="stack-badge">AWS</span>
+          <span class="stack-badge">JavaScript / Python</span>
+          <span class="stack-badge">Algoritmos Combinatórios</span>
+          <span class="stack-badge">Motores Matemáticos</span>
+          <span class="stack-badge">Filtros de Segurança</span>
         </div>
       </div>
     </div>
 
     <div class="project-card reveal reveal-delay-2" data-cat="data">
-      <div class="project-thumb">
-        <span class="project-thumb-icon">🗺️</span>
+      <div class="project-thumb" style="background:linear-gradient(135deg,#050d1a,#0a1830);">
+        <span class="project-thumb-icon">📶</span>
         <div class="project-thumb-overlay">
-          <button class="thumb-btn demo-btn" data-i18n="proj.demo" data-video="https://www.youtube.com/embed/VIDEO_ID?autoplay=1" data-title="Project Demo" onclick="openVideoModal(this)">Live Demo</button>
+          <a href="https://plug-calc-carga.lovable.app" target="_blank" rel="noopener" class="thumb-btn">Live Demo</a>
           <span class="thumb-btn" style="opacity:0.3;cursor:not-allowed;pointer-events:none;">GitHub</span>
         </div>
       </div>
       <div class="project-body">
-        <span class="project-tag tag-data">Data</span>
-        <div class="project-title" data-i18n="proj.p5.title">Geospatial Data Pipeline</div>
-        <p class="project-desc" data-i18n="proj.p5.desc">ETL pipeline processing real-time geolocation data for logistics route optimization.</p>
+        <span class="project-tag tag-data" style="background:rgba(0,240,255,0.08);color:var(--cyan);border-color:rgba(0,240,255,0.2);">Engenharia &amp; Eficiência</span>
+        <div class="project-title" data-i18n="proj.p2.title">NET_ANALYZER</div>
+        <p class="project-desc" data-i18n="proj.p2.desc">Analisador de redes elétricas profissional com motor matemático True RMS e FFT, verificação de conformidade com normas europeias (EN 50160/ERSE), otimização de fator de potência e métricas sustentáveis ESG.</p>
         <div class="project-stack">
-          <span class="stack-badge">Spark</span>
-          <span class="stack-badge">Python</span>
-          <span class="stack-badge">Kafka</span>
-          <span class="stack-badge">PostGIS</span>
+          <span class="stack-badge">Python &amp; PyQt6</span>
+          <span class="stack-badge">NumPy &amp; FFT</span>
+          <span class="stack-badge">SQLite Time-Series</span>
+          <span class="stack-badge">Métricas ESG</span>
         </div>
       </div>
-    </div>
+    </div>    </div>
 
-    <div class="project-card reveal reveal-delay-3" data-cat="aiml">
-      <div class="project-thumb">
-        <span class="project-thumb-icon">🧠</span>
-        <div class="project-thumb-overlay">
-          <button class="thumb-btn demo-btn" data-i18n="proj.demo" data-video="https://www.youtube.com/embed/VIDEO_ID?autoplay=1" data-title="Project Demo" onclick="openVideoModal(this)">Live Demo</button>
-          <span class="thumb-btn" style="opacity:0.3;cursor:not-allowed;pointer-events:none;">GitHub</span>
-        </div>
-      </div>
-      <div class="project-body">
-        <span class="project-tag tag-aiml">AI / ML</span>
-        <div class="project-title" data-i18n="proj.p6.title">NLP Document Classifier</div>
-        <p class="project-desc" data-i18n="proj.p6.desc">Automated document categorization system with 94% precision for legal and financial texts.</p>
-        <div class="project-stack">
-          <span class="stack-badge">BERT</span>
-          <span class="stack-badge">Python</span>
-          <span class="stack-badge">React</span>
-          <span class="stack-badge">FastAPI</span>
-        </div>
-      </div>
-    </div>
+    
 
   </div>
 </section>
@@ -1526,9 +1464,9 @@ const i18n = {
     "skills.panel1":"Engineering & Tech Universe","skills.panel2":"Skills Proficiency",
     "proj.tag":"Work","proj.title":"Selected<br/>Projects",
     "proj.all":"All","proj.demo":"Live Demo",
-    "proj.p1.title":"Electrical Budget System","proj.p1.desc":"Web platform for generating electrical project budgets — materials quantification, measurement maps and cost proposals.",
-    "proj.p2.title":"NutriShare","proj.p2.desc":"Web platform to fight hunger and reduce food waste, connecting businesses with surplus food to NGOs and vulnerable families through dedicated donor and receiver profiles with control dashboards.",
-    "proj.p3.title":"Material Cost Predictor","proj.p3.desc":"ML model predicting electrical material costs based on project type, scope and historical budget data.",
+    "proj.p1.title":"Delcio English","proj.p1.desc":"Interactive web application for English language teaching and practice. Features real-time database management, student-focused UX, authentication and dynamic components for a fluid learning experience.",
+    "proj.p2.title":"NET_ANALYZER","proj.p2.desc":"Professional electrical network analyser with True RMS and FFT mathematical engine, compliance verification with European standards (EN 50160/ERSE), power factor optimisation and sustainable ESG metrics.",
+    "proj.p3.title":"PLUGTECH CalcStudio Pro","proj.p3.desc":"Professional software for calculation and sizing of Low Voltage electrical installations per RTIEBT. Automates majorated apparent power, cumulative voltage drop, protection coordination (IEC 60364), Icc verification (IEC 60898-1), conduit sizing and advanced algorithmic phase balancing.",
     "proj.p4.title":"Site Inspection App","proj.p4.desc":"Mobile-friendly web app for field inspectors to log and report electrical site compliance checks in real time.",
     "proj.p5.title":"Energy Consumption Analyser","proj.p5.desc":"Tool for analysing BT/MT energy consumption patterns, identifying inefficiencies and generating saving reports.",
     "proj.p6.title":"Technical Reports Generator","proj.p6.desc":"Automated system for generating standardised technical reports for electrical projects, inspections and audits.",
@@ -1564,9 +1502,9 @@ const i18n = {
     "skills.panel1":"Universo de Engenharia & Tech","skills.panel2":"Nível de Competências",
     "proj.tag":"Trabalhos","proj.title":"Projetos<br/>Selecionados",
     "proj.all":"Todos","proj.demo":"Ver Demo",
-    "proj.p1.title":"Sistema de Orçamentação Eléctrica","proj.p1.desc":"Plataforma web para elaboração de orçamentos eléctricos — quantificação de materiais, mapas de medições e propostas comerciais.",
-    "proj.p2.title":"NutriShare","proj.p2.desc":"Plataforma web para combater a fome e mitigar o desperdício de alimentos, conectando estabelecimentos comerciais com excedentes a ONGs e famílias vulneráveis através de perfis de doador e recetor com painéis de controlo dedicados.",
-    "proj.p3.title":"Previsão de Custos de Materiais","proj.p3.desc":"Modelo ML que prevê custos de materiais eléctricos com base no tipo de projecto e dados históricos de orçamentos.",
+    "proj.p1.title":"Delcio English","proj.p1.desc":"Aplicação web interativa para ensino e prática da língua inglesa. Inclui gestão de base de dados em tempo real, UX focada no estudante, autenticação e componentes dinâmicos para uma experiência de aprendizagem fluida.",
+    "proj.p2.title":"NET_ANALYZER","proj.p2.desc":"Analisador de redes elétricas profissional com motor matemático True RMS e FFT, verificação de conformidade com normas europeias (EN 50160/ERSE), otimização de fator de potência e métricas sustentáveis ESG.",
+    "proj.p3.title":"PLUGTECH CalcStudio Pro","proj.p3.desc":"Software profissional de cálculo e dimensionamento de instalações elétricas de Baixa Tensão segundo o RTIEBT. Automatiza cálculos de potência aparente majorada, queda de tensão acumulada, coordenação de proteções (IEC 60364), verificação de Icc (IEC 60898-1), dimensionamento de tubagens e equilíbrio algorítmico avançado de fases.",
     "proj.p4.title":"App de Fiscalização em Obra","proj.p4.desc":"App web para fiscais registarem e reportarem verificações de conformidade eléctrica em obra, em tempo real.",
     "proj.p5.title":"Analisador de Consumo de Energia","proj.p5.desc":"Ferramenta para análise de padrões de consumo BT/MT, identificação de ineficiências e relatórios de poupança.",
     "proj.p6.title":"Gerador de Relatórios Técnicos","proj.p6.desc":"Sistema automatizado para geração de relatórios técnicos padronizados para projectos, inspecções e auditorias eléctricas.",
